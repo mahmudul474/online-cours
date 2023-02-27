@@ -1,0 +1,18 @@
+.text-set{
+  color: #14614F;
+  line-height: 1.4;
+}
+
+.watchVideo-button{
+  background-color: #21BED6;
+  padding: 10px 45px;
+  border-radius: 35px;
+  color: white;
+  font-weight: 600;
+}
+
+.heroBg{
+  background-image: url("../../assats/heroBG.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
