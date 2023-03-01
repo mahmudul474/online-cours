@@ -1,0 +1,25 @@
+.already-text{
+  color: #1684F2;
+  font-weight: 600;
+}
+
+.wel-Omr-text{
+  color: #1684F2;
+}
+
+.Sign-Up-Button{
+  background-color: #1684F2;
+  width: 100%;
+  padding: 12px ;
+}
+
+.welcome-bg{
+  background-image: url("../../assats/welcome-bg.png");
+  background-repeat: no-repeat;
+}
+
+.height-set-welcome-div{
+   
+  height: 100%;
+
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import './Navbar.css'
 import { Link } from "react-router-dom";
+import avatar from '../../assats/avatar.png'
 
 
 const Navbar = () => {
@@ -9,7 +10,7 @@ const Navbar = () => {
     <>
         <li className="font-bold ml-0 lg:ml-5">
           
-          <Link>Home</Link>
+          <Link to='/'>Home</Link>
 
         </li>
 
@@ -25,10 +26,8 @@ const Navbar = () => {
 
         </li>
 
-        <li className="font-bold"><Link>Admission Test</Link></li>
-
         <li className="font-bold">
-          <Link>Online Batch</Link>
+          <Link>Admission Test</Link>
         </li>
 
         <li className="font-bold">
@@ -36,17 +35,22 @@ const Navbar = () => {
         </li>
 
         <li className="font-bold">
-          <Link>Skill Development</Link>
+          <Link>Question Bank</Link>
         </li>
 
         <li className="font-bold">
-          <Link>Question Bank</Link>
+          <Link to='/login'>Login</Link>
+        </li>
+
+        <li className="font-bold">
+          <Link to='/signUp'>Sign Up</Link>
         </li>
      
     </>
    )
 
   return (
+
     <div className="mx-0 lg:mx-8 py-5">
 
       <div className="navbar bg-base-100">
@@ -79,9 +83,13 @@ const Navbar = () => {
             </ul>
 
           </div>
+
             {/* <img src={navlogo} alt="" className="img-fluid p-0" /> */}
-            <Link className="btn btn-ghost mr-5 text-xl uppercase p-0 navLogo-text">Omr Academy</Link>
+
+            <Link to='/' className="btn btn-ghost mr-5 text-xl uppercase p-0 navLogo-text">Omar Academy</Link>
+
         </div>
+
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
                
@@ -190,7 +198,7 @@ const Navbar = () => {
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
 
-          <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="" />
+          <img src={avatar} alt="" />
 
         </div>
       </label>
@@ -199,18 +207,24 @@ const Navbar = () => {
 
         <li>
 
-          <a className="justify-between">
+          <Link to='/profile' className="justify-between">
 
             Profile
 
             <span className="badge">New</span>
 
-          </a>
+          </Link>
 
         </li>
 
-        <li><a>Settings</a></li>
+        <li>
+
+          <Link to='/profileSetting'>Settings</Link>
+
+        </li>
+
         <li><a>Logout</a></li>
+
       </ul>
 
     </div>

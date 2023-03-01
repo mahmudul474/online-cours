@@ -2,7 +2,9 @@ import React from 'react';
 import './QuestionBank.css'
 
 const QuestionBank = () => {
+
   return (
+
     <div className='mb-10'>
 
         <div className="mt-10 lg:mt-16">
@@ -32,7 +34,9 @@ const QuestionBank = () => {
         </div>
 
     </div>
+    
   );
+
 };
 
 export default QuestionBank;
