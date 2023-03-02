@@ -16,6 +16,7 @@
 .welcome-bg{
   background-image: url("../../assats/welcome-bg.png");
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .height-set-welcome-div{

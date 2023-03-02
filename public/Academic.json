@@ -1,0 +1,27 @@
+[
+
+  {
+    "id": 0,
+    "courseImg": "https://i.ibb.co/swjJTVS/academy-class.png",
+    "classes": "1-4",
+    "videoCount": "10,000",
+    "subjectCount": 500
+  },
+
+  {
+    "id": 1,
+    "courseImg": "https://i.ibb.co/swjJTVS/academy-class.png",
+    "classes": " 5-8",
+    "videoCount": "10,000",
+    "subjectCount": 500
+  },
+
+  {
+    "id": 2,
+    "courseImg": "https://i.ibb.co/swjJTVS/academy-class.png",
+    "classes": " 9-12",
+    "videoCount": "10,000",
+    "subjectCount": 500
+  }
+
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": 0,
+    "courseImg": "https://i.ibb.co/LPm0Vz2/Rectangle-4-1.png",
+    "courseName": "Omar’s Basic Math",
+    "coursePrice": "Free",
+    "videoCount": "100",
+    "chapter": "50"
+  },
+
+  {
+    "id": 1,
+    "courseImg": "https://i.ibb.co/Q692M2f/mathematics-word-2.jpg",
+    "courseName": "P E R Mathematics",
+    "coursePrice": "199 taka",
+    "videoCount": "100",
+    "chapter": "50"
+  },
+
+  {
+    "id": 0,
+    "courseImg": "https://i.ibb.co/LPm0Vz2/Rectangle-4-1.png",
+    "courseName": "Basic Math A to Z",
+    "coursePrice": "399 taka",
+    "videoCount": "100",
+    "chapter": "50"
+  }
+
+]
