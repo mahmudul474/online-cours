@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import './Login.css'
 import { Link } from "react-router-dom";
 import Google from "../Google/Google";
+import { AuthContext } from "../../Auth/AuthProvider/AuthProvider";
 
 const Login = () => {
+
+  const {loginUser} = useContext(AuthContext)
+
+  const loginHandler = (event) => {
+
+     event.preventDefault()
+     
+     const form = event.target;
+     const email = form.email.value;
+     const password = form.password.value;
+
+     console.log(email, password)
+
+     loginUser(email, password)
+      .then(result => {
+         const user = result.user
+         console.log(user)
+      })
+      .catch(e => console.log(e))
+
+  }
 
   return (
 
@@ -55,11 +77,12 @@ const Login = () => {
 
             <div className="mb-10">
 
-              <form>
+              <form onSubmit={loginHandler}>
                 
 
                 <input
                   type="text"
+                  name="email"
                   placeholder="Email"
                   className="input input-bordered w-full mb-4 lg:mb-10 rounded-none py-5 lg:py-7"
                   required
@@ -67,7 +90,8 @@ const Login = () => {
 
 
                 <input
-                  type="text"
+                  type="password"
+                  name="password"
                   placeholder="Password"
                   className="input input-bordered w-full mb-10 lg:mb-16 rounded-none py-5 lg:py-7"
                   required
@@ -81,9 +105,11 @@ const Login = () => {
                    Google 
                   </button> */}
 
-                 <Google/>
+                 
 
               </form>
+
+              <Google/>
 
             </div>
 
