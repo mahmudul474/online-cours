@@ -25,12 +25,7 @@ const SignUp = () => {
       .then((result) => {
 
         const user = result.user;
-
-        if(loading){
-          return <h1>loading...</h1>
-        }
         userNamePhoneNumberSet(name, number)
-
         emailVerification()
          .then(() => {
           alert('Please check your email address')

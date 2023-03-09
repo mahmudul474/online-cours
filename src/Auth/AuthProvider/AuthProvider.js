@@ -1,9 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updateProfile} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile, signInWithPopup, signOut} from 'firebase/auth'
 import app from '../../Firebase/Firebase.config';
+import Loading from '../../Components/Loading/Loading';
 
 
 export const AuthContext = createContext()
+
 
 const auth = getAuth(app)
 
@@ -13,6 +15,16 @@ const AuthProvider = ({children}) => {
 
   const [loading, setLoading] = useState(true)
 
+
+
+  const googleProvider = (provider) =>{
+
+    setLoading(true)
+    return signInWithPopup(auth, provider) 
+   
+  }
+
+
   const signUpUser = (email, password) => {
 
     setLoading(true)
@@ -20,12 +32,14 @@ const AuthProvider = ({children}) => {
     
   }
 
+
   const loginUser = (email, password) => {
      
     setLoading(true)
     return signInWithEmailAndPassword(auth, email, password)
-
+   
   }
+
 
   const setProfile = (profile) =>{
 
@@ -33,11 +47,24 @@ const AuthProvider = ({children}) => {
 
  }
 
+
  const emailVerification = () => {
    
      return sendEmailVerification(auth.currentUser)
              
  }
+
+
+ const forgatPassword = (userEmailForForgetPassword) => {
+
+   return sendPasswordResetEmail(auth, userEmailForForgetPassword)
+
+ }
+
+ const logOut = () =>{
+  setLoading(true)
+  return signOut(auth)
+}
 
 
 
@@ -55,15 +82,22 @@ const AuthProvider = ({children}) => {
    },[]) 
 
 
+  
+
+
 
   const authInfo = {
 
        user,
        loading,
+       setLoading,
        signUpUser,
        loginUser,
        setProfile,
-       emailVerification
+       emailVerification,
+       forgatPassword,
+       googleProvider,
+       logOut
   
   }
 

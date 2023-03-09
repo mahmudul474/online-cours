@@ -1,31 +1,75 @@
-import React, { useContext } from "react";
-import './Login.css'
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import "./Login.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Google from "../Google/Google";
 import { AuthContext } from "../../Auth/AuthProvider/AuthProvider";
+import Loading from "../Loading/Loading";
 
 const Login = () => {
+  const { loginUser, forgatPassword, loading, setLoading } =
+    useContext(AuthContext);
 
-  const {loginUser} = useContext(AuthContext)
+  const [userEmailForForgetPassword, setUserEmailForForgetPassword] =
+    useState("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const [error, setError] = useState("");
+
+  console.log(error);
 
   const loginHandler = (event) => {
 
-     event.preventDefault()
-     
-     const form = event.target;
-     const email = form.email.value;
-     const password = form.password.value;
+    event.preventDefault();
 
-     console.log(email, password)
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-     loginUser(email, password)
-      .then(result => {
-         const user = result.user
-         console.log(user)
+    console.log(email, password);
+
+    loginUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setLoading(true);
+        if (loading) {
+          return <Loading />;
+        }
+        navigate(from, { replace: true });
+        setLoading(false);
+        console.log(user);
       })
-      .catch(e => console.log(e))
+      .catch((e) => {
 
-  }
+        console.error(e);
+        setError(e.message);
+
+      });
+  };
+
+  const emailBlurHandle = (event) => {
+    const email = event.target.value;
+    setUserEmailForForgetPassword(email);
+    //  console.log(email)
+  };
+
+  const forgetPasswordHandle = () => {
+
+    if (!userEmailForForgetPassword) {
+      alert("Please provide your email address");
+      return;
+    }
+
+    forgatPassword(userEmailForForgetPassword)
+      .then(() => {
+        alert("Reset password link send your email. Please check your email");
+      })
+      .catch((e) => console.error(e));
+      
+  };
 
   return (
 
@@ -49,7 +93,7 @@ const Login = () => {
 
               <p className="text-2xl lg:text-4xl font-bold wel-Omr-text">
 
-                 Omar’s Academy
+                Omar’s Academy
 
               </p>
 
@@ -59,16 +103,16 @@ const Login = () => {
 
         </div>
 
+
         <div className="bg-base-200 w-full lg:w-3/4 shadow-2xl">
           <div className="mx-16">
             {/* Text SignUp */}
 
             <div className="flex-none lg:flex justify-between items-center mt-6 mb-6 lg:mb-10">
-
               <h1 className="text-3xl font-bold mb-2 lg:mb-0">Login</h1>
 
-              <Link to='/signUp' className="underline already-text">
-                   Create New Account
+              <Link to="/signUp" className="underline already-text">
+                Create New Account
               </Link>
 
             </div>
@@ -78,9 +122,9 @@ const Login = () => {
             <div className="mb-10">
 
               <form onSubmit={loginHandler}>
-                
 
                 <input
+                  onBlur={emailBlurHandle}
                   type="text"
                   name="email"
                   placeholder="Email"
@@ -88,34 +132,41 @@ const Login = () => {
                   required
                 />
 
-
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  className="input input-bordered w-full mb-10 lg:mb-16 rounded-none py-5 lg:py-7"
+                  className="input input-bordered w-full mb-5 lg:mb-5 rounded-none py-5 lg:py-7"
                   required
                 />
 
-                 <button className="Sign-Up-Button font-bold text-white mb-5">
+                <div className="flex justify-between">
+
+                  <p className="text-red-500 font-semibold"> {error} </p>
+
+                  <p
+                    onClick={forgetPasswordHandle}
+                    className="text-blue-600 font-semibold mb-5 lg:mb-10 text-end cursor-pointer"
+                  >
+
+                    Forget password?
+
+                  </p>
+
+                </div>
+
+                <button className="Sign-Up-Button font-bold text-white mb-5">
+
                   Login
-                 </button>
 
-                 {/* <button className="Sign-Up-Button font-bold text-white mb-5"> 
-                   Google 
-                  </button> */}
-
-                 
+                </button>
 
               </form>
 
-              <Google/>
+              <Google />
 
             </div>
-
-
           </div>
-
 
         </div>
 
@@ -124,6 +175,7 @@ const Login = () => {
     </div>
 
   );
+
 };
 
 export default Login;

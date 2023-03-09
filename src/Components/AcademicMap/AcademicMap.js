@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AcademicMap = ({academicData}) => {
 
-  const {classes ,id, videoCount, subjectCount, courseImg} = academicData
+  const {classes ,id , videoCount, subjectCount, courseImg} = academicData
 
   return (
 
@@ -23,6 +24,7 @@ const AcademicMap = ({academicData}) => {
           <div className="font-semibold">
 
             <p>{videoCount} + Free Videos</p>
+
             <p>Live Class</p>
 
           </div>
@@ -30,6 +32,7 @@ const AcademicMap = ({academicData}) => {
           <div className="font-semibold">
 
             <p>{subjectCount} Subject</p>
+
             <p className="text-center">MCQ Test</p>
 
           </div>
@@ -40,7 +43,13 @@ const AcademicMap = ({academicData}) => {
 
         <div className="card-actions justify-center py-2 text-lg">
 
-          <button className="see-details font-bold">See Details</button>
+          <Link to="/academyDetails">
+
+            <button className="see-details font-bold">
+              See Details
+            </button>
+
+          </Link>
 
         </div>
 
