@@ -5,6 +5,8 @@ import AcademicMap from "../AcademicMap/AcademicMap";
 
 const Academic = () => {
   ///hello user
+
+  ///another hello
   const [academices, setAcademices] = useState([]);
 
   useEffect(() => {
