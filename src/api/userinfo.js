@@ -12,3 +12,5 @@ export const saveuserInfo = (info) => {
       localStorage.setItem("omarToken", data.token);
     });
 };
+
+
