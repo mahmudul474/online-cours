@@ -76,15 +76,17 @@ const ImageModal = () => {
          </div>
 
          <div className="modal-action">
-         <label htmlFor="my-modal-3"  type="submit" className="btn bg-blue-500">Post</label>
-      <label htmlFor="my-modal-3" className="btn bg-red-500">Cancel</label>
+
+    <label htmlFor="my-modal-3"  type="submit" className="btn bg-blue-500">Post</label>
+
+       <label htmlFor="my-modal-3" className="btn bg-red-500">Cancel</label>
       
      </div>
 
     </div>
          
       </form>
-      
+
     </div>
   );
 };

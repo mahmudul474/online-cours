@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../../assats/avatar.png';
+import { AuthContext } from '../../Auth/AuthProvider/AuthProvider';
 
 
 const NavProfileAvatar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+   
+  const logOutHandle = () => {
+    logOut()
+      .then((result) => {})
+      .catch((error) => console.error(error));
+  };
+
 
   return (
     
@@ -39,7 +49,7 @@ const NavProfileAvatar = () => {
 
         </li>
 
-        <li><button>Logout</button></li>
+        <li><button onClick={logOutHandle}>Logout</button></li>
 
       </ul>
 
