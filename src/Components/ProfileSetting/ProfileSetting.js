@@ -3,88 +3,146 @@ import avatar from '../../assats/avatar.png'
 import "./ProfileSetting.css";
 
 const ProfileSetting = () => {
+     
+  const handleOfUserInformation = (event) => {
+     
+    event.preventDefault()
+
+   const form = event.target;
+
+   const profileName = form.profileName.value;
+   const mobileNumber = form.mobileNumber.value;
+   const email = form.email.value;
+   const certificateNumber = form.certificateNumber.value;
+   const institution = form.institution.value;
+   const group = form.group.value;
+   const result = form.result.value;
+   const passYear = form.passYear.value;
+   const fatherName = form.fatherName.value;
+   const motherName = form.motherName.value;
+   const fatherOccupation = form.fatherOccupation.value;
+   const birthPlace = form.birthPlace.value;
+   const bloodGroup = form.bloodGroup.value;
+   const aboutYourself = form.aboutYourself.value;
+   const permanentDistrict = form.presentDistrict.value;
+   const permanentPoliceStation = form.permanentPoliceStation.value;
+   const permanentPostalCode = form.permanentPostalCode.value;
+   const permanentDivision = form.permanentDivision.value;
+   const permanentAddress = form.permanentAddress.value;
+   const presentDistrict = form.permanentDistrict.value;
+   const presentPoliceStation = form.presentPoliceStation.value;
+   const presentPostalCode = form.presentPostalCode.value;
+   const presentDivision = form.presentDivision.value;
+   const presentAddress = form.presentAddress.value;
+     
+    console.log(profileName, mobileNumber, email, certificateNumber, institution, group, result, passYear, fatherName, motherName, fatherOccupation, birthPlace, bloodGroup, aboutYourself, permanentDistrict, permanentPoliceStation, permanentPostalCode, permanentDivision, permanentAddress,presentDistrict, presentPoliceStation, presentPostalCode, presentDivision, presentAddress)
+  
+  }
+   
+
   return (
     <div className="flex-none lg:flex mx-3 lg:mx-20 mb:mx-6">
       {/* profile view  */}
 
       <div>
-
         <div className="card w-full lg:w-96 bg-base-100 shadow-md border">
           <div className="card-body">
-
             {/* avatar */}
 
             <div>
 
               <div className="avatar flex justify-center">
-
                 <div className="w-24 rounded-full">
-
-                  <img src={avatar} />
-
-
+                  <img src={avatar} alt=""/>
                 </div>
-
               </div>
 
               <div className="text-center mt-5">
-
-                 <div>
-                    <p className="text-2xl font-bold">Aminur Rahman</p>
-                    <p>aminurfahim@gmail.com</p>
-                 </div>
-
+                <div>
+                  <p className="text-2xl font-bold">Aminur Rahman</p>
+                  <p>aminurfahim@gmail.com</p>
+                </div>
               </div>
 
               <div className="ml-10 mt-8">
+                <div>
+                  <p className="font-semibold mb-2">
+                    {" "}
+                    <span>
+                      <i class="fa-solid fa-eye"></i>
+                    </span>{" "}
+                    View Profile{" "}
+                  </p>
 
-                 <div>
-                    <p className="font-semibold mb-2"> <span><i class="fa-solid fa-eye"></i></span> View Profile </p>
+                  <p className="font-semibold mb-2">
+                    {" "}
+                    <span>
+                      <i class="fa-brands fa-youtube"></i>
+                    </span>{" "}
+                    My Course
+                  </p>
 
-                    <p className="font-semibold mb-2"> <span><i class="fa-brands fa-youtube"></i></span> My Course</p>
+                  <p className="font-semibold mb-2">
+                    {" "}
+                    <span>
+                      <i class="fa-solid fa-user"></i>
+                    </span>{" "}
+                    Profile{" "}
+                  </p>
 
-                    <p className="font-semibold mb-2"> <span><i class="fa-solid fa-user"></i></span> Profile </p>
-                     
-                     <p className="font-semibold mb-2"> <span><i class="fa-solid fa-bell"></i></span> Notification</p>
+                  <p className="font-semibold mb-2">
+                    {" "}
+                    <span>
+                      <i class="fa-solid fa-bell"></i>
+                    </span>{" "}
+                    Notification
+                  </p>
 
-                     <p className="font-semibold mb-2"> <span><i class="fa-solid fa-gear"></i></span> Privacy </p>
-
-                 </div>
-
+                  <p className="font-semibold mb-2">
+                    {" "}
+                    <span>
+                      <i class="fa-solid fa-gear"></i>
+                    </span>{" "}
+                    Privacy{" "}
+                  </p>
+                </div>
               </div>
-              
             </div>
 
             <div className="card-actions justify-start ml-8 mt-16">
-
-                <button className="text-red-400"><i class="fa-solid fa-right-from-bracket"></i> <span className="font-bold">Logout</span> </button>
-              
+              <button className="text-red-400">
+                <i class="fa-solid fa-right-from-bracket"></i>{" "}
+                <span className="font-bold">Logout</span>{" "}
+              </button>
             </div>
-
           </div>
         </div>
       </div>
 
-
       {/* info update */}
 
       <div className="w-full ml-0 lg:ml-10 mt-10 lg:mt-0">
-        <from>
+
+        <form onSubmit={handleOfUserInformation}>
+
           <input
             type="text"
+            name="profileName"
             placeholder="Profile Name"
             className="input input-bordered w-full mb-5"
           />
 
           <input
             type="text"
-            placeholder="Type here"
+            name="mobileNumber"
+            placeholder="Registered Mobile Number"
             className="input input-bordered w-full mb-5"
           />
 
           <input
             type="text"
-            placeholder="Type here"
+            name="email"
+            placeholder="E-mail Address*"
             className="input input-bordered w-full"
           />
 
@@ -94,36 +152,43 @@ const ProfileSetting = () => {
 
           <input
             type="text"
-            placeholder="Type here"
+            name="certificateNumber"
+            placeholder="Certificate Number"
             className="input input-bordered w-full mb-5"
           />
 
           <input
             type="text"
-            placeholder="Type here"
+            name="institution"
+            placeholder="Institution"
             className="input input-bordered w-full mb-5"
           />
 
           <input
             type="text"
-            placeholder="Type here"
+            name="group"
+            placeholder="Group"
             className="input input-bordered w-full mb-5"
           />
 
           {/* input flex */}
 
           <div className="flex-none lg:flex ">
+
             <input
               type="text"
-              placeholder="Type here"
+              name="result"
+              placeholder="Result"
               className="input input-bordered w-full mb-5 mr-0 lg:mr-2"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="passYear"
+              placeholder="Pass Year"
               className="input input-bordered w-full mb-5 ml-0 lg:ml-2"
             />
+
           </div>
 
           {/* Personal Information */}
@@ -131,87 +196,142 @@ const ProfileSetting = () => {
           <p className="text-2xl font-bold mt-10 mb-5"> Personal Information</p>
 
           <div>
+
             <input
               type="text"
-              placeholder="Type here"
+              name="fatherName"
+              placeholder="Father’s Name"
               className="input input-bordered w-full mb-5"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="motherName"
+              placeholder="Mother’s Name"
               className="input input-bordered w-full mb-5"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="fatherOccupation"
+              placeholder="Father’s Occupation"
               className="input input-bordered w-full mb-5"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="birthPlace"
+              placeholder="Birth Place"
               className="input input-bordered w-full mb-5"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="bloodGroup"
+              placeholder="Blood Group"
               className="input input-bordered w-full mb-5"
             />
 
             <textarea
+              name="aboutYourself"
               className="textarea textarea-bordered w-full h-28 lg:h-48 mb-5"
-              placeholder="Bio"
+              placeholder="Tell us more about yourself"
             ></textarea>
+
           </div>
+
+          {/* Permanent Address */}
+
+          <p className="text-2xl font-bold mt-10 mb-5">Permanent Address</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+            <input
+              type="text"
+              name="permanentDistrict"
+              placeholder="District"
+              className="input input-bordered w-full mb-5"
+            />
+
+            <input
+              type="text"
+              name="permanentPoliceStation"
+              placeholder="Police Station"
+              className="input input-bordered w-full mb-5"
+            />
+
+            <input
+              type="text"
+              name="permanentPostalCode"
+              placeholder="Postal Code"
+              className="input input-bordered w-full mb-5"
+            />
+
+            <input
+              type="text"
+              name="permanentDivision"
+              placeholder="Division"
+              className="input input-bordered w-full mb-5"
+            />
+
+          </div>
+
+          <input
+            type="text"
+            name="permanentAddress"
+            placeholder="Address"
+            className="input input-bordered w-full mb-5 "
+          />
 
           {/* Present Address*/}
 
           <p className="text-2xl font-bold mt-10 mb-5">Present Address</p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
             <input
               type="text"
-              placeholder="Type here"
+              name="presentDistrict"
+              placeholder="District"
               className="input input-bordered w-full mb-5"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="presentPoliceStation"
+              placeholder="Police Station"
               className="input input-bordered w-full mb-5"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="presentPostalCode"
+              placeholder="Postal Code"
               className="input input-bordered w-full mb-5"
             />
 
             <input
               type="text"
-              placeholder="Type here"
+              name="presentDivision"
+              placeholder="Division"
               className="input input-bordered w-full mb-5"
             />
+
           </div>
 
           <input
             type="text"
-            placeholder="Type here"
+            name="presentAddress"
+            placeholder="Address"
             className="input input-bordered w-full mb-5 "
           />
 
-          <textarea
-            className="textarea textarea-bordered w-full h-28 lg:h-48 mb-5"
-            placeholder="Bio"
-          ></textarea>
-
           <div>
-            <button className="mb-5 lg:mb-10 button-update"> Update </button>
+            <button type="submit" className="mb-5 lg:mb-10 button-update"> Update </button>
           </div>
-        </from>
+
+        </form>
+
       </div>
     </div>
   );
