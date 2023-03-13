@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Google from "../Google/Google";
 import { AuthContext } from "../../Auth/AuthProvider/AuthProvider";
 import Loading from "../Loading/Loading";
+import { saveuserInfo } from "../../api/userinfo";
 
 const Login = () => {
   const { loginUser, forgatPassword, loading, setLoading } =
@@ -22,7 +23,6 @@ const Login = () => {
   console.log(error);
 
   const loginHandler = (event) => {
-
     event.preventDefault();
 
     const form = event.target;
@@ -34,19 +34,25 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
+
         setLoading(true);
         if (loading) {
           return <Loading />;
         }
+        const information = {
+          name: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          photoURL: user.photoURL,
+        };
+        saveuserInfo(information);
         navigate(from, { replace: true });
         setLoading(false);
         console.log(user);
       })
       .catch((e) => {
-
         console.error(e);
         setError(e.message);
-
       });
   };
 
@@ -57,7 +63,6 @@ const Login = () => {
   };
 
   const forgetPasswordHandle = () => {
-
     if (!userEmailForForgetPassword) {
       alert("Please provide your email address");
       return;
@@ -68,41 +73,26 @@ const Login = () => {
         alert("Reset password link send your email. Please check your email");
       })
       .catch((e) => console.error(e));
-      
   };
 
   return (
-
     <div className="mx-3 lg:mx-16  mt-20 lg:mt-16 ">
-
       <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2">
-
         {/* headline */}
 
         <div className="hidden lg:block welcome-bg">
-
           <div className="flex justify-center mt-32 height-wel">
-
             <div>
-
               <p className="text-2xl lg:text-4xl font-bold mb-2">
-
                 A Warm Welcome to
-
               </p>
 
               <p className="text-2xl lg:text-4xl font-bold wel-Omr-text">
-
                 Omar’s Academy
-
               </p>
-
             </div>
-
           </div>
-
         </div>
-
 
         <div className="bg-base-200 w-full lg:w-3/4 shadow-2xl">
           <div className="mx-16">
@@ -114,15 +104,12 @@ const Login = () => {
               <Link to="/signUp" className="underline already-text">
                 Create New Account
               </Link>
-
             </div>
 
             {/* form start */}
 
             <div className="mb-10">
-
               <form onSubmit={loginHandler}>
-
                 <input
                   onBlur={emailBlurHandle}
                   type="text"
@@ -141,41 +128,28 @@ const Login = () => {
                 />
 
                 <div className="flex justify-between">
-
                   <p className="text-red-500 font-semibold"> {error} </p>
 
                   <p
                     onClick={forgetPasswordHandle}
                     className="text-blue-600 font-semibold mb-5 lg:mb-10 text-end cursor-pointer"
                   >
-
                     Forget password?
-
                   </p>
-
                 </div>
 
                 <button className="Sign-Up-Button font-bold text-white mb-5">
-
                   Login
-
                 </button>
-
               </form>
 
               <Google />
-
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   );
-
 };
 
 export default Login;

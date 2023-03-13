@@ -4,9 +4,6 @@ import image from "../../assats/academy-class.png";
 import AcademicMap from "../AcademicMap/AcademicMap";
 
 const Academic = () => {
-  ///hello user
-
-  ///another hello
   const [academices, setAcademices] = useState([]);
 
   useEffect(() => {
