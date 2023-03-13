@@ -1,5 +1,6 @@
 import React from "react";
 import avatar from '../../assats/avatar.png'
+import ImageModal from "./ImageModal";
 import "./ProfileSetting.css";
 
 const ProfileSetting = () => {
@@ -45,23 +46,49 @@ const ProfileSetting = () => {
       {/* profile view  */}
 
       <div>
+
         <div className="card w-full lg:w-96 bg-base-100 shadow-md border">
+
           <div className="card-body">
             {/* avatar */}
 
             <div>
 
               <div className="avatar flex justify-center">
-                <div className="w-24 rounded-full">
+
+                <div className="w-24 rounded-full relative">
+
                   <img src={avatar} alt=""/>
+
                 </div>
+
+                {/* The button to open modal */}
+
+                <div className=" absolute mt-2 ml-20 mb-4  px-2 ">
+                      
+                      <label htmlFor="my-modal-3" >
+   
+                           <i class="fa-solid fa-camera text-blue-600 text-xl bg-slate-300 px-2 py-1 rounded-full"></i>
+   
+                      </label> 
+   
+                    </div> 
+   
+
+                  <ImageModal/>          
+   
               </div>
 
               <div className="text-center mt-5">
+
                 <div>
-                  <p className="text-2xl font-bold">Aminur Rahman</p>
-                  <p>aminurfahim@gmail.com</p>
+
+                  <p className="text-2xl font-bold"> Aminur Rahman </p>
+                  
+                  <p> aminurfahim@gmail.com </p>
+
                 </div>
+
               </div>
 
               <div className="ml-10 mt-8">
