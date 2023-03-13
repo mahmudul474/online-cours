@@ -32,19 +32,15 @@ const ImageModal = () => {
 
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
 
-      <div className="modal ">
+      <form className="modal ">
         <div className="modal-box relative">
-          <label
-            htmlFor="my-modal-3"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
-          >
-            ✕
-          </label>
+         
 
          <div className="flex justify-center relative items-center">
+
          <button
             type="button"
-            className="   absolute top-16 mr-52 focus:outline-none mx-2 text-blue-600 hover:text-blue-700 w-6 h-6 ml-48"
+            className="absolute top-48 mr-40 focus:outline-none mx-2 text-blue-600 hover:text-blue-700 w-6 h-6 ml-48"
           >
             <label htmlFor="image">
               <input
@@ -69,7 +65,9 @@ const ImageModal = () => {
             <div className="avatar">
 
               <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+
                 <img src="img" alt=""/>
+
               </div>
 
             </div>
@@ -77,8 +75,16 @@ const ImageModal = () => {
           </div>
          </div>
 
-        </div>
-      </div>
+         <div className="modal-action">
+         <label htmlFor="my-modal-3"  type="submit" className="btn bg-blue-500">Post</label>
+      <label htmlFor="my-modal-3" className="btn bg-red-500">Cancel</label>
+      
+     </div>
+
+    </div>
+         
+      </form>
+      
     </div>
   );
 };
