@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Google from "../Google/Google";
 import { AuthContext } from "../../Auth/AuthProvider/AuthProvider";
+import { saveuserInfo } from "../../api/userinfo";
 
 const SignUp = () => {
+  const { signUpUser, loading, setProfile, emailVerification } =
+    useContext(AuthContext);
 
-  const { signUpUser , loading, setProfile, emailVerification} = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const signUpHandle = (event) => {
-
     event.preventDefault();
 
     const form = event.target;
@@ -21,35 +22,37 @@ const SignUp = () => {
     // console.log(name, email, phoneNumber, password)
 
     signUpUser(email, password)
-
       .then((result) => {
-
         const user = result.user;
-        userNamePhoneNumberSet(name, number)
-        emailVerification()
-         .then(() => {
-          alert('Please check your email address')
-         })
-        console.log(user);
+
+        userNamePhoneNumberSet(name);
+        emailVerification().then(() => {
+          alert("Please check your email address");
+
+          const information = {
+            name: user.displayName,
+            email: user.email,
+            uid: user.uid,
+            photoURL: user.photoURL,
+          };
+          saveuserInfo(information);
+        });
+        navigate("/login");
       })
       .catch((e) => console.error(e));
-
   };
 
-  const userNamePhoneNumberSet = (name, number) => {
-
+  const userNamePhoneNumberSet = (name) => {
     const profile = {
       displayName: name,
-      phoneNumber: number,
     };
 
-    console.log(profile)
+    console.log(profile);
 
     setProfile(profile)
-    .then(() => {})
-    .catch((e) => console.error(e));
-
-  }
+      .then(() => {})
+      .catch((e) => console.error(e));
+  };
 
   return (
     <div className="mx-3 lg:mx-16 mt-10 welcome-bg height-set-welcome-div mb-10">
@@ -86,7 +89,6 @@ const SignUp = () => {
 
             <div className="mb-10">
               <form onSubmit={signUpHandle}>
-
                 <input
                   type="text"
                   name="name"
@@ -122,11 +124,9 @@ const SignUp = () => {
                 <button type="submit" className="Sign-Up-Button mb-5 font-bold">
                   Sign Up
                 </button>
-
               </form>
 
               <Google />
-
             </div>
           </div>
         </div>
