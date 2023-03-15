@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useContext } from "react";
 
+import { AuthContext } from "../../Auth/AuthProvider/AuthProvider";
 
-const ImageModal = () => {
-
-  const [img, setImg] = useState();
+const ImageModal = ({ refetch }) => {
+  const [img, setImg] = useState("");
+  const { user } = useContext(AuthContext);
+  console.log(user.email);
 
   const handleImg = (e) => {
     const img = e.target.files[0];
@@ -15,7 +18,7 @@ const ImageModal = () => {
 
     fetch(url, {
       method: "POST",
-      body: formData
+      body: formData,
     })
       .then((res) => res.json())
       .then((imgData) => {
@@ -26,6 +29,33 @@ const ImageModal = () => {
         toast.error("internet  problem");
       });
   };
+
+  const changeUserPhoto = (e) => {
+    const profilImg = {
+      photoURL: img,
+    };
+
+    e.preventDefault();
+    console.log(img, "user change  photo");
+
+    fetch(`http://localhost:5000/profile/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(profilImg),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+        if (data.acknowledge == true) {
+          toast.success("upload sucesfully");
+        }
+      });
+  };
+
   return (
     <div>
       {/* Put this part before </body> tag */}
@@ -34,57 +64,69 @@ const ImageModal = () => {
 
       <form className="modal ">
         <div className="modal-box relative">
-         
+          <div className="flex justify-center relative items-center">
+            {/* avatar */}
 
-         <div className="flex justify-center relative items-center">
-
-         <button
-            type="button"
-            className="absolute top-48 mr-40 focus:outline-none mx-2 text-blue-600 hover:text-blue-700 w-6 h-6 ml-48"
-          >
-            <label htmlFor="image">
-              <input
-              onChange={handleImg}
-                accept="image/*"
-                type="file"
-                name="image"
-                id="image"
-                className="hidden"
-              />
-
-              <i class="fa-solid fa-image text-4xl"></i>
-            </label>
-
-          </button>
-          
-
-          {/* avatar */}
-
-          <div className="flex justify-center ">
-
-            <div className="avatar">
-
-              <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-
-                <img src="img" alt=""/>
-
+            <div className="flex justify-center ">
+              <label
+                htmlFor="my-modal-3"
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+              >
+                ✕
+              </label>
+              <div className="avatar">
+                <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  {img ? (
+                    <img src={img} alt="" />
+                  ) : (
+                    <img
+                      src="https://i.ibb.co/ypNYFVK/istockphoto-931643150-612x612.jpg"
+                      alt=""
+                    />
+                  )}
+                </div>
               </div>
-
             </div>
-
           </div>
-         </div>
 
-         <div className="modal-action">
-         <label htmlFor="my-modal-3"  type="submit" className="btn bg-blue-500">Post</label>
-      <label htmlFor="my-modal-3" className="btn bg-red-500">Cancel</label>
-      
-     </div>
+          <div className="modal-action flex items-center ">
+            {img ? (
+              <label
+                htmlFor="my-modal-3"
+                onClick={changeUserPhoto}
+                className="btn bg-blue-500"
+              >
+                Post
+              </label>
+            ) : (
+              <button type="button">
+                <label htmlFor="image">
+                  <input
+                    onChange={handleImg}
+                    accept="image/*"
+                    type="file"
+                    name="image"
+                    id="image"
+                    className="hidden"
+                  />
 
-    </div>
-         
+                  <h1 className="bg-blue-600 cursor-pointer text-white rounded-lg w-34  p-3">
+                    Upload
+                  </h1>
+                </label>
+              </button>
+            )}
+
+            <label
+              htmlFor="my-modal-3"
+              className="btn bg-red-500"
+              onClick={() => setImg("")}
+            >
+              Cancel
+            </label>
+          </div>
+        </div>
       </form>
-      
     </div>
   );
 };

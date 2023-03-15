@@ -9,45 +9,46 @@ import HomePages from "../../Pages/HomePages/HomePages";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const routers = createBrowserRouter([
-
   {
-    path: '/',
+    path: "/",
     element: <Main></Main>,
     children: [
-      
       {
-        path: '/',
-        element: <HomePages></HomePages>
+        path: "/",
+        element: <HomePages></HomePages>,
       },
 
       {
-        path: '/profile',
-        element: <Profile></Profile>
+        path: "/profile",
+        element: <Profile></Profile>,
       },
 
       {
         path: "/profileSetting",
-        element: <ProfileSetting></ProfileSetting>
+        element: <ProfileSetting></ProfileSetting>,
       },
 
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
 
       {
-        path: '/signUp',
-        element: <SignUp></SignUp>
+        path: "/signUp",
+        element: <SignUp></SignUp>,
       },
 
       {
         path: "/academyDetails",
-        element: <PrivateRoute> <AcademyDetails/> </PrivateRoute>
-      }
+        element: (
+          <PrivateRoute>
+            {" "}
+            <AcademyDetails />{" "}
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
-    ]
-  }
-  
-])
-
-export default routers
+export default routers;

@@ -34,6 +34,7 @@ const SignUp = () => {
             email: user.email,
             uid: user.uid,
             photoURL: user.photoURL,
+            phonNumber: number,
           };
           saveuserInfo(information);
         });
