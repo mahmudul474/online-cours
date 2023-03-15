@@ -102,7 +102,7 @@ const ProfileSetting = () => {
 
             <div>
               <div className="avatar flex justify-center">
-                <div className="w-24 rounded-full relative">
+                <div className="w-24 rounded-full border border-blue-500 relative">
                   {data?.photoURL ? (
                     <img src={data?.photoURL} alt="" />
                   ) : (
@@ -122,6 +122,7 @@ const ProfileSetting = () => {
                 </div>
 
                 <ImageModal
+                  refetch={refetch}
                   data={data}
                   handleOfUserInformation={handleOfUserInformation}
                 />

@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useContext } from "react";
 
-const ImageModal = ({ setImg, img, handleOfUserInformation }) => {
+import { AuthContext } from "../../Auth/AuthProvider/AuthProvider";
+
+const ImageModal = ({ refetch }) => {
+  const [img, setImg] = useState("");
+  const { user } = useContext(AuthContext);
+  console.log(user.email);
+
   const handleImg = (e) => {
     const img = e.target.files[0];
     const formData = new FormData();
@@ -23,6 +30,32 @@ const ImageModal = ({ setImg, img, handleOfUserInformation }) => {
       });
   };
 
+  const changeUserPhoto = (e) => {
+    const profilImg = {
+      photoURL: img,
+    };
+
+    e.preventDefault();
+    console.log(img, "user change  photo");
+
+    fetch(`http://localhost:5000/profile/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(profilImg),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+        if (data.acknowledge == true) {
+          toast.success("upload sucesfully");
+        }
+      });
+  };
+
   return (
     <div>
       {/* Put this part before </body> tag */}
@@ -35,6 +68,12 @@ const ImageModal = ({ setImg, img, handleOfUserInformation }) => {
             {/* avatar */}
 
             <div className="flex justify-center ">
+              <label
+                htmlFor="my-modal-3"
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+              >
+                ✕
+              </label>
               <div className="avatar">
                 <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   {img ? (
@@ -52,7 +91,11 @@ const ImageModal = ({ setImg, img, handleOfUserInformation }) => {
 
           <div className="modal-action flex items-center ">
             {img ? (
-              <label htmlFor="my-modal-3" className="btn bg-blue-500">
+              <label
+                htmlFor="my-modal-3"
+                onClick={changeUserPhoto}
+                className="btn bg-blue-500"
+              >
                 Post
               </label>
             ) : (
