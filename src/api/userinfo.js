@@ -1,3 +1,4 @@
+//save user info
 export const saveuserInfo = (info) => {
   fetch(`http://localhost:5000/user/${info?.email}`, {
     method: "PUT",
@@ -9,8 +10,5 @@ export const saveuserInfo = (info) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      localStorage.setItem("omarToken", data.token);
     });
 };
-
-
