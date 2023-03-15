@@ -127,6 +127,7 @@ const ImageModal = ({ refetch }) => {
           </div>
         </div>
       </form>
+
     </div>
   );
 };

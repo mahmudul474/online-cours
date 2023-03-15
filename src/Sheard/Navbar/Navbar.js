@@ -9,16 +9,13 @@ import NavProfileAvatar from "../NavProfileAvatar/NavProfileAvatar";
 import { AuthContext } from "../../Auth/AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
 
-  const logOutHandle = () => {
-    logOut()
-      .then((result) => {})
-      .catch((error) => console.error(error));
-  };
+  const { user } = useContext(AuthContext);
 
   const navInfo = (
+
     <>
+
       <li className="font-bold ml-0 lg:ml-5">
         <Link to="/">Home</Link>
       </li>
@@ -36,32 +33,20 @@ const Navbar = () => {
       </li>
 
       <li className="font-bold">
+        <Link>Online Batch</Link>
+      </li>
+      <li className="font-bold">
         <Link>Book Store</Link>
       </li>
 
       <li className="font-bold">
-        <Link>Question Bank</Link>
+        <Link>Skill Development</Link>
       </li>
 
-      {user?.emailVerified === true ? (
-        <>
-          <li>
-            <button onClick={logOutHandle}>logout</button>
-          </li>
-        </>
-      ) : (
-        <>
-          <li className="font-bold">
-            <Link to="/login">Login</Link>
-          </li>
-
-          <li className="font-bold">
-            <Link to="/signUp">Sign Up</Link>
-          </li>
-        </>
-      )}
     </>
+
   );
+
 
   return (
     <div className="mx-0 lg:mx-8 py-5">
@@ -90,10 +75,11 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {navInfo}
+
             </ul>
+
           </div>
 
-          {/* <img src={navlogo} alt="" className="img-fluid p-0" /> */}
 
           <Link
             to="/"
@@ -104,7 +90,11 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navInfo}</ul>
+
+          <ul className="menu menu-horizontal gap-0 m-0">
+            {navInfo} 
+          </ul>
+
         </div>
 
         {/* avatar and dropdown  */}
@@ -112,19 +102,41 @@ const Navbar = () => {
         <div className="navbar-end">
           {/* Favourite icon */}
 
-          <NavfavouriteIcon />
+          {
+            user?.emailVerified === true ? 
+            <>
+               <NavfavouriteIcon />
 
-          {/* add to card */}
+{/* add to card */}
 
-          <NavAddToCard />
+<NavAddToCard />
 
-          {/* notification */}
+{/* notification */}
 
-          <NavNotification />
+<NavNotification />
 
-          {/* avatar */}
+{/* avatar */}
 
-          <NavProfileAvatar />
+<NavProfileAvatar />
+            </>
+           :
+            
+           <>
+
+          <p className="mr-5">
+            <Link to="/login" className="font-bold text-blue-600">Login</Link>
+          </p>
+
+          <p className="font-bold text-blue-600">
+
+            <Link to="/signUp">Sign Up</Link>
+
+          </p>
+             
+           </>
+
+          }
+
         </div>
       </div>
     </div>

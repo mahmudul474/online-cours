@@ -1,8 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import avatar from "../../assats/avatar.png";
+
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import avatar from '../../assats/avatar.png';
+import { AuthContext } from '../../Auth/AuthProvider/AuthProvider';
+
 
 const NavProfileAvatar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+   
+  const logOutHandle = () => {
+    logOut()
+      .then((result) => {})
+      .catch((error) => console.error(error));
+  };
+
+
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -26,9 +40,10 @@ const NavProfileAvatar = () => {
           <Link to="/profileSetting">Settings</Link>
         </li>
 
-        <li>
-          <button>Logout</button>
-        </li>
+
+        <li><button onClick={logOutHandle}>Logout</button></li>
+
+
       </ul>
     </div>
   );
