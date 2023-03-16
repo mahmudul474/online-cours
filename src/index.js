@@ -9,6 +9,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import CoursProbider from "./Context/CoursProbider";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +18,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <App />
+        <CoursProbider>
+          <App />
+        </CoursProbider>
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
