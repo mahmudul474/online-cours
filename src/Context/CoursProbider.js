@@ -3,9 +3,15 @@ import React, {createContext, useState } from 'react'
 
 export const CoursContext = createContext();
 
-const CoursProbider = () => {
+const CoursProbider = ({children}) => {
   const [cart, setCart] = useState()
-  return <CoursContext.Provider value={[cart, setCart]}></CoursContext.Provider>;
+  return <CoursContext.Provider value={[cart, setCart]}>
+ {
+children
+ }
+
+
+  </CoursContext.Provider>;
 };
 
 export default CoursProbider;

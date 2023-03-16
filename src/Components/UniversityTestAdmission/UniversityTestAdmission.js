@@ -11,7 +11,7 @@ const UniversityTestAdmission = () => {
       .catch((e) => console.error(e));
   }, []);
 
-  const [cart, setCart] = useContext();
+  const [cart, setCart] = useState([]);
 
   console.log(cart);
 
