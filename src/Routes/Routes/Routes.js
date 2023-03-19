@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import ShopingCart from "../../Cards/ShopingCart/ShopingCart";
 import AcademyDetails from "../../Components/AcademyDetails/AcademyDetails";
 import Login from "../../Components/Login/Login";
 import Profile from "../../Components/Profile/Profile";
@@ -42,11 +43,20 @@ const routers = createBrowserRouter([
         path: "/academyDetails",
         element: (
           <PrivateRoute>
-            {" "}
-            <AcademyDetails />{" "}
+           
+            <AcademyDetails /> 
           </PrivateRoute>
         ),
       },
+
+       {
+        path:"/shop",
+        element:<ShopingCart></ShopingCart>
+
+       }
+
+
+
     ],
   },
 ]);

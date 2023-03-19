@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const UniversityTestAdmissionMap = ({
   universityTestData,
-  handeleAddtoCart,
+  handleAddtoCart
 }) => {
   const { id, courseImg, coursePrice, videoCount, chapter, courseName } =
     universityTestData;
@@ -36,12 +37,14 @@ const UniversityTestAdmissionMap = ({
         <div className="card-actions justify-evenly py-2 text-lg">
           <button className="see-details font-bold">See Details</button>
 
-          <button
-            onClick={() => handeleAddtoCart(universityTestData)}
-            className="see-details font-bold"
-          >
-            Add To Card
-          </button>
+          <Link to="/shop">
+            <button
+              onClick={() => handleAddtoCart(universityTestData)}
+              className="see-details font-bold"
+            >
+              Add To Card
+            </button>
+          </Link>
         </div>
       </div>
     </div>
